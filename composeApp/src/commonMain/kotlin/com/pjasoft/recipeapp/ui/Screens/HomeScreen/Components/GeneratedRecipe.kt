@@ -34,9 +34,10 @@ import coil3.compose.AsyncImage
 import com.pjasoft.recipeapp.domain.dtos.RecipeDTO
 import com.pjasoft.recipeapp.domain.models.Recipe
 import com.pjasoft.recipeapp.ui.RecipeTheme
+import io.ktor.util.generateNonce
 import org.jetbrains.compose.ui.tooling.preview.Preview
 @Composable
-fun GeneratedRecipe(recipe: RecipeDTO?, onSave: () -> Unit){
+fun GeneratedRecipe(recipe: RecipeDTO?, isExisting: Boolean , onSave: () -> Unit, onClose:() -> Unit){
     val colors = MaterialTheme.colorScheme
     Column(
         modifier = Modifier
@@ -117,10 +118,19 @@ fun GeneratedRecipe(recipe: RecipeDTO?, onSave: () -> Unit){
                 )
             }
         }
-        Button(
-            onClick = onSave
-        ){
-            Text("Guardar")
+
+        if (isExisting) {
+            Button(
+                onClick = onClose
+            ) {
+                Text("Cerrar")
+            }
+        } else {
+            Button(
+                onClick = onSave
+            ) {
+                Text("Guardar")
+            }
         }
     }
 }
@@ -164,7 +174,9 @@ fun GeneratedRecipeView(){
     RecipeTheme {
         GeneratedRecipe(
             recipe = recipe,
-            {}
+            isExisting = false,
+            onSave = {},
+            onClose = {}
         )
     }
 }
