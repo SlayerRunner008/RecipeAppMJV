@@ -1,5 +1,8 @@
 package com.pjasoft.recipeapp.ui.viewModels
 
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pjasoft.recipeapp.data.ktorfitClient
@@ -10,6 +13,10 @@ import de.jensklingenberg.ktorfit.ktorfit
 import kotlinx.coroutines.launch
 
 class AuthViewModel : ViewModel(){
+
+
+    var isLoading by mutableStateOf(false)
+        private set
     fun register(
         name : String,
         email : String,
@@ -39,6 +46,8 @@ class AuthViewModel : ViewModel(){
             }catch (e : Exception){
                 onResult(false, "Error al reistrarte")
                 print(e.toString())
+            } finally {
+                isLoading = false
             }
         }
     }
@@ -67,6 +76,8 @@ class AuthViewModel : ViewModel(){
             }
             catch (e :  Exception){
                 onResult(false, "Error al loguearse")
+            } finally {
+                isLoading = false
             }
         }
     }

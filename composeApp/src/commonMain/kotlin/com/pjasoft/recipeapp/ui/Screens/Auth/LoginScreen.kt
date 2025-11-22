@@ -36,6 +36,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.pjasoft.recipeapp.domain.utils.Preferences
+import com.pjasoft.recipeapp.ui.Components.LoadingOverlay
 import com.pjasoft.recipeapp.ui.RecipeTheme
 import com.pjasoft.recipeapp.ui.Screens.HomeScreenRoute
 import com.pjasoft.recipeapp.ui.Screens.LoginScreenRoute
@@ -170,7 +171,14 @@ fun LoginScreen(
                     }
             )
         }
+
     }
+
+    if (viewModel.isLoading) {
+        LoadingOverlay(colors)
+    }
+
+
 }
 
 @Preview

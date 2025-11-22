@@ -31,7 +31,7 @@ fun LoadingOverlay(colors: ColorScheme){
             modifier = Modifier.size(70.dp)
         )
         Text(
-            text = "Cocinando",
+            text = "...",
             style = MaterialTheme.typography.titleLarge,
             color = colors.onSurface
         )
